@@ -1,1 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
+html {
+    font-size: 62.5%;
+    font-family: "Raleway";
+}
+body {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    background-color: #0c0c0f;
+}
+.screen {
+    min-width: 350px;
+    margin-top: -10px;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* topo da tela */
+
+.screen h1 {
+    color: #5c5c72;
+    margin-bottom: 20px;
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+/* meio da tela */
+
+.screen-middle {
+    background-color: #23232c;
+    margin-bottom: 15px;
+    display: flex;
+    height: 50px;
+    padding: 0px 20px;
+    align-items: center;
+}
+.screen-middle h2 {
+    color: #dadada;
+    font-size: 2.3rem;
+    margin-bottom: 5px;
+    width: 90%;
+}
+
+/* parte de baixo da tela */
+
+.screen-bottom {
+    background-color: #23232c;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 20px 20px 20px;
+}
+.screen-bottom p {
+    color: #dadada;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.caracteres-top {
+    display: flex;
+    margin-bottom: 20px;
+}
+.caracteres-top h3 {
+    text-align: end;
+    width: 65%;
+    color: rgb(139, 240, 177);
+    font-size: 2.7rem;
+    margin: 0;
+}
+.caracter-length {
+    margin-top: 13px;
+}
+.caracteres {
+    margin-bottom: 20px;
+}
+.includes {
+    display: flex;
+    margin-bottom: 12px;
+}
+.includes p {
+    margin-left: 10px;
+}
+.chk {
+    border: none;
+}
+.strenght {
+    margin-top: 5px;
+    background-color: #17171d;
+    padding: 0px 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.strenght h4 {
+    color: #5c5c72;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+.strenght-right {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    color: white;
+}
+.generate-btn {
+    height: 40px;
+    cursor: pointer;
+    background-color: rgb(139, 240, 177);
+    border: none;
+    color: rgb(40, 94, 60);
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.generate-btn:hover {
+    border: 2px solid rgb(139, 240, 177);
+    background-color: #23232c;
+    color: rgb(139, 240, 177);
+}
