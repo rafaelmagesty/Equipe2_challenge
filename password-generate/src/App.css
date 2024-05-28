@@ -36,14 +36,23 @@ body {
     margin-bottom: 15px;
     display: flex;
     height: 50px;
-    padding: 0px 20px;
+    padding: 0px 10px 0px 20px;
     align-items: center;
 }
 .screen-middle h2 {
-    color: #dadada;
+    color: #464652;
     font-size: 2.3rem;
-    margin-bottom: 5px;
     width: 90%;
+}
+.img-btn {
+    width: 28px;
+    height: 28px;
+    background-color: #23232c;
+    border: none;
+    cursor: pointer;
+}
+.img {
+    width: 100%;
 }
 
 /* parte de baixo da tela */

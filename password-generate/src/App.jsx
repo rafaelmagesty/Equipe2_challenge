@@ -7,8 +7,8 @@ function App() {
       <h1>Password Generator</h1>
 
       <div className='screen-middle'>
-        <h2>434324234</h2>
-        <button>copy</button>
+        <h2>P4$5W0rD!</h2>
+        <button className='img-btn'><img src="\public\img-copiar.png" alt="img" className='img' /></button>
       </div>
 
       {/* todas as classes de caracter eu coloquei em português, porque acho difícil escrever em inglês */}
