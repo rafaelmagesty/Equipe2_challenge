@@ -25,7 +25,7 @@ function has(target, list){
  * @returns {string}
  */
 // retorna a senha com "target_size" caracteres de acordo com os tipos de caracteres selecionados
-function generate(target_size, uppercase=false, lowercase=false, numbers=false, symbols=false){
+export function generate(target_size, uppercase=false, lowercase=false, numbers=false, symbols=false){
     const lowerlist = "abcdefghijklmnopqrstuvwxyz";
     const upperlist = lowerlist.toUpperCase();
     const numberlist = "1234567890";
@@ -51,7 +51,7 @@ function generate(target_size, uppercase=false, lowercase=false, numbers=false, 
  * @returns {number}
  */
 // retorna uma força da senha entre 0 e 4 (o valor é arredondado para cima)
-function password_strength(password){
+export function password_strength(password){
     const lowerlist = "abcdefghijklmnopqrstuvwxyz";
     const upperlist = lowerlist.toUpperCase();
     const numberlist = "1234567890";
