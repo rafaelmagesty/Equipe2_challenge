@@ -11,7 +11,7 @@ class App extends React.Component{
       strenght_value:'',
       len:10,
       password:"P4$5W0rD!", 
-      strength:0,
+      strength:-1,
       lowercase:false,
       uppercase:false,
       numbers:false,
@@ -24,109 +24,81 @@ class App extends React.Component{
 
   // função que lida com o clique no botão "generate" e atualiza a força da senha
   handle_generate_click = () =>{
-    if (this.clique_lowercase == 0 && this.clique_uppercase == 0 && this.clique_numbers == 0 && this.clique_symbols == 0){
-      this.setState ({password:"Error"});
-    } else {
-      this.setState({
-        password:generate(this.state.len, this.state.uppercase, this.state.lowercase, this.state.numbers, this.state.symbols)
-      });
+    if (!this.state.uppercase && !this.state.lowercase && !this.state.numbers && !this.state.symbols) {
+      this.setState({password:"P4$5W0rD!"});
+      document.getElementById('password').style.color = '#464652';
+      this.setState({strength:-1});
+      this.enable_bars(-1);
     }
-    this.setState({
-      strength:password_strength(this.state.password)
-    });
-
-    //mudança da força de acordo com a senha e demorando por 50 milisegundos
-    setTimeout(() => {
-      if (this.state.strength == 1) {
-        document.getElementById('barra1').style.backgroundColor = 'green';
-        document.getElementById('barra2').style.background = 'none';
-        document.getElementById('barra3').style.background = 'none';
-        document.getElementById('barra4').style.background = 'none';
-        this.setState({strenght_value:"very easy"});
-      } else if (this.state.strength == 2) {
-        document.getElementById('barra1').style.backgroundColor = 'green';
-        document.getElementById('barra2').style.backgroundColor = 'green';
-        document.getElementById('barra3').style.background = 'none';
-        document.getElementById('barra4').style.background = 'none';
-        this.setState({strenght_value:"easy"});
-      } else if (this.state.strength == 3) {
-        document.getElementById('barra1').style.backgroundColor = 'yellow';
-        document.getElementById('barra2').style.backgroundColor = 'yellow';
-        document.getElementById('barra3').style.backgroundColor = 'yellow';
-        document.getElementById('barra4').style.background = 'none';
-        this.setState({strenght_value:"medium"});
-      } else if (this.state.strength == 4) {
-        document.getElementById('barra1').style.backgroundColor = 'red';
-        document.getElementById('barra2').style.backgroundColor = 'red';
-        document.getElementById('barra3').style.backgroundColor = 'red';
-        document.getElementById('barra4').style.backgroundColor = 'red';
-        this.setState({strenght_value:"hard"});
-      }
-      if (this.state.password == 'Error') {
-        document.getElementById('barra1').style.background = 'none';
-        document.getElementById('barra2').style.background = 'none';
-        document.getElementById('barra3').style.background = 'none';
-        document.getElementById('barra4').style.background = 'none';
-        this.setState({strenght_value:""});
-      }
-    },50);
-      
-
-  // para trocar a cor do placeholder pela da senha ao gerar a primeira vez
-    document.getElementById('password').style.color = '#dadada';
+    else {
+      const new_pass = generate(this.state.len, this.state.uppercase, this.state.lowercase, this.state.numbers, this.state.symbols);
+      this.setState({password:new_pass});
+      const p_strength = password_strength(new_pass);
+      this.setState({strength:p_strength});
+      this.enable_bars(p_strength);
+      // para trocar a cor do placeholder pela da senha ao gerar a primeira vez
+      document.getElementById('password').style.color = '#dadada';
+    }
   }
   
-  // conexão dos states com os checkboxes
-  clique_uppercase = 0;       //uppercase
-  chk_Uppercase = () => {
-    if (this.clique_uppercase == 0){
-      this.setState({ uppercase:true });
-      this.clique_uppercase = 1;
-    } else {
-      this.setState({ uppercase:false });
-      this.clique_uppercase = 0
+  // mudança da força de acordo com a senha e demorando por 50 milisegundos
+  enable_bars = (p_strength) => {
+    if (p_strength == -1) {
+      document.getElementById('barra1').style.background = 'none';
+      document.getElementById('barra2').style.background = 'none';
+      document.getElementById('barra3').style.background = 'none';
+      document.getElementById('barra4').style.background = 'none';
+      this.setState({strenght_value:""});
     }
-  }
-//teste commit
-  clique_lowercase = 0;       //lowercase
-  chk_Lowercase = () => {
-    if (this.clique_lowercase == 0){
-      this.setState({ lowercase:true });
-      this.clique_lowercase = 1;
-    } else {
-      this.setState({ lowercase:false });
-      this.clique_lowercase = 0
+    else if (p_strength == 0) {
+      document.getElementById('barra1').style.background = 'none';
+      document.getElementById('barra2').style.background = 'none';
+      document.getElementById('barra3').style.background = 'none';
+      document.getElementById('barra4').style.background = 'none';
+      this.setState({strenght_value:"inexistent"});
+    }
+    else if (p_strength == 1) {
+      document.getElementById('barra1').style.backgroundColor = 'green';
+      document.getElementById('barra2').style.background = 'none';
+      document.getElementById('barra3').style.background = 'none';
+      document.getElementById('barra4').style.background = 'none';
+      this.setState({strenght_value:"very easy"});
+    }
+    else if (p_strength == 2) {
+      document.getElementById('barra1').style.backgroundColor = 'green';
+      document.getElementById('barra2').style.backgroundColor = 'green';
+      document.getElementById('barra3').style.background = 'none';
+      document.getElementById('barra4').style.background = 'none';
+      this.setState({strenght_value:"easy"});
+    }
+    else if (p_strength == 3) {
+      document.getElementById('barra1').style.backgroundColor = 'yellow';
+      document.getElementById('barra2').style.backgroundColor = 'yellow';
+      document.getElementById('barra3').style.backgroundColor = 'yellow';
+      document.getElementById('barra4').style.background = 'none';
+      this.setState({strenght_value:"medium"});
+    }
+    else if (p_strength == 4) {
+      document.getElementById('barra1').style.backgroundColor = 'red';
+      document.getElementById('barra2').style.backgroundColor = 'red';
+      document.getElementById('barra3').style.backgroundColor = 'red';
+      document.getElementById('barra4').style.backgroundColor = 'red';
+      this.setState({strenght_value:"hard"});
     }
   }
 
-  clique_numbers = 0;        //numbers
-  chk_Numbers = () => {
-    if (this.clique_numbers == 0){
-      this.setState({ numbers:true });
-      this.clique_numbers = 1;
-    } else {
-      this.setState({ numbers:false });
-      this.clique_numbers = 0
-    }
+  // lida com as checkboxes
+  change_checkbox = (event) => {
+    this.setState({[event.target.getAttribute("checkbox-type")]:event.target.checked});
   }
 
-  clique_symbols = 0;        //symbols
-  chk_Symbols = () => {
-    if (this.clique_symbols == 0){
-      this.setState({ symbols:true });
-      this.clique_symbols = 1;
-    } else {
-      this.setState({ symbols:false });
-      this.clique_symbols = 0
-    }
-  }
-
+  // copia a senha gerada
   clipboardCopy = () => {
-  let psswrd = document.querySelector("#password").innerHTML;
-  setTimeout(() => {
-    navigator.clipboard.writeText(psswrd);
-  },100);
-}
+    let psswrd = document.querySelector("#password").innerHTML;
+    setTimeout(() => {
+      navigator.clipboard.writeText(psswrd);
+    },100);
+  }
 
   render(){
     return (
@@ -158,19 +130,19 @@ class App extends React.Component{
             </div>
           </div>
           <div className='includes'>
-            <input type="checkbox" className='chk' onClick={this.chk_Uppercase} />
+            <input type="checkbox" className='chk' checkbox-type="uppercase" onClick={this.change_checkbox} />
             <p>Include Uppercase Letters</p>
           </div>
           <div className='includes'>
-            <input type="checkbox" className='chk' onClick={this.chk_Lowercase} />
+            <input type="checkbox" className='chk' checkbox-type="lowercase" onClick={this.change_checkbox} />
             <p>Include Lowercase Letters</p>
           </div>
           <div className='includes'>
-            <input type="checkbox" className='chk' onClick={this.chk_Numbers} />
+            <input type="checkbox" className='chk' checkbox-type="numbers" onClick={this.change_checkbox} />
             <p>Include Numbers</p>
           </div>
           <div className='includes'>
-            <input type="checkbox" className='chk' onClick={this.chk_Symbols} />
+            <input type="checkbox" className='chk' checkbox-type="symbols" onClick={this.change_checkbox} />
             <p>Include Symbols</p>
           </div>
           <div className='strenght'>
