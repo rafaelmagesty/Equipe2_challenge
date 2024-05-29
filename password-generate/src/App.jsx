@@ -1,7 +1,7 @@
 import React from 'react'; // para usar a notação de classe tive que importar o react :(
 import './App.css'
 import {generate, password_strength} from './password-gen/generator.js'
-
+import Slider from './Slider';
 // mudei a função App para uma classe pois acho que fica um pouco mais organizado
 class App extends React.Component{
   constructor(props){
@@ -16,6 +16,18 @@ class App extends React.Component{
       uppercase:false,
       numbers:false,
       symbols:false};
+  }
+  handle_generate_click = () => {
+    this.setState({
+      password: generate(this.state.len, this.state.uppercase, this.state.lowercase, this.state.numbers, this.state.symbols)
+    });
+    this.setState({
+      strength: password_strength(this.state.password)
+    });
+  }
+
+  handleSliderChange = (value) => {
+    this.setState({ len: value });
   }
 
   // função que lida com o clique no botão "generate" e atualiza a força da senha
@@ -128,7 +140,12 @@ class App extends React.Component{
               <h3>{this.state.len}</h3>
             </div>
             <div className='caracteres-bottom'>
-              <p>barra para selecionar o tamanho</p>
+            <Slider 
+                min={0} 
+                max={20} 
+                value={this.state.len} 
+                onChange={this.handleSliderChange} 
+              />
             </div>
           </div>
           <div className='includes'>
