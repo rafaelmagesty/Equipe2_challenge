@@ -25,6 +25,9 @@ class App extends React.Component{
     this.setState({
       strength:password_strength(this.state.password)
     });
+
+  // para trocar a cor do placeholder pela da senha ao gerar a primeira vez
+    document.getElementById('password').style.color = '#dadada';
   }
 
   render(){
@@ -36,7 +39,7 @@ class App extends React.Component{
   
         <div className='screen-middle'>
           {/* tipo aqui embaixo é uma referencia ao state agora */}
-          <h2>{this.state.password}</h2>
+          <h2 id='password'>{this.state.password}</h2>
           <button className='img-btn'><img src="\public\img-copiar.png" alt="img" className='img' /></button>
         </div>
   
