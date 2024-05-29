@@ -94,10 +94,22 @@ class App extends React.Component{
 
   // copia a senha gerada
   clipboardCopy = () => {
-    let psswrd = document.querySelector("#password").innerHTML;
+    let password = document.querySelector("#password").innerHTML;
+    if (password === "Error") {
+      alert('A senha não foi gerada corretamente.');
+      return; 
+    }
+  
     setTimeout(() => {
-      navigator.clipboard.writeText(psswrd);
-    },100);
+      navigator.clipboard.writeText(password)
+        .then(() => {
+          alert('Senha copiada para a área de transferência!');
+        })
+        .catch(err => {
+          console.error('Erro ao copiar a senha: ', err);
+          alert('Erro ao copiar a senha. Por favor, tente novamente.');
+        });
+    }, 100);
   }
 
   render(){
