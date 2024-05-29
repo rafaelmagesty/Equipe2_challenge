@@ -17,14 +17,6 @@ class App extends React.Component{
       numbers:false,
       symbols:false};
   }
-  handle_generate_click = () => {
-    this.setState({
-      password: generate(this.state.len, this.state.uppercase, this.state.lowercase, this.state.numbers, this.state.symbols)
-    });
-    this.setState({
-      strength: password_strength(this.state.password)
-    });
-  }
 
   handleSliderChange = (value) => {
     this.setState({ len: value });
@@ -43,31 +35,35 @@ class App extends React.Component{
       strength:password_strength(this.state.password)
     });
 
-    if (this.state.strength == 1) {
-      document.getElementById('barra1').style.backgroundColor = 'green';
-      document.getElementById('barra2').style.background = 'none';
-      document.getElementById('barra3').style.background = 'none';
-      document.getElementById('barra4').style.background = 'none';
-      this.setState({strenght_value:"very easy"});
-    } else if (this.state.strength == 2) {
-      document.getElementById('barra1').style.backgroundColor = 'green';
-      document.getElementById('barra2').style.backgroundColor = 'green';
-      document.getElementById('barra3').style.background = 'none';
-      document.getElementById('barra4').style.background = 'none';
-      this.setState({strenght_value:"easy"});
-    } else if (this.state.strength == 3) {
-      document.getElementById('barra1').style.backgroundColor = 'yellow';
-      document.getElementById('barra2').style.backgroundColor = 'yellow';
-      document.getElementById('barra3').style.backgroundColor = 'yellow';
-      document.getElementById('barra4').style.background = 'none';
-      this.setState({strenght_value:"medium"});
-    } else if (this.state.strength == 4) {
-      document.getElementById('barra1').style.backgroundColor = 'red';
-      document.getElementById('barra2').style.backgroundColor = 'red';
-      document.getElementById('barra3').style.backgroundColor = 'red';
-      document.getElementById('barra4').style.backgroundColor = 'red';
-      this.setState({strenght_value:"hard"});
-    }
+    //mudança da força de acordo com a senha e demorando por 50 milisegundos
+    setTimeout(() => {
+      if (this.state.strength == 1) {
+        document.getElementById('barra1').style.backgroundColor = 'green';
+        document.getElementById('barra2').style.background = 'none';
+        document.getElementById('barra3').style.background = 'none';
+        document.getElementById('barra4').style.background = 'none';
+        this.setState({strenght_value:"very easy"});
+      } else if (this.state.strength == 2) {
+        document.getElementById('barra1').style.backgroundColor = 'green';
+        document.getElementById('barra2').style.backgroundColor = 'green';
+        document.getElementById('barra3').style.background = 'none';
+        document.getElementById('barra4').style.background = 'none';
+        this.setState({strenght_value:"easy"});
+      } else if (this.state.strength == 3) {
+        document.getElementById('barra1').style.backgroundColor = 'yellow';
+        document.getElementById('barra2').style.backgroundColor = 'yellow';
+        document.getElementById('barra3').style.backgroundColor = 'yellow';
+        document.getElementById('barra4').style.background = 'none';
+        this.setState({strenght_value:"medium"});
+      } else if (this.state.strength == 4) {
+        document.getElementById('barra1').style.backgroundColor = 'red';
+        document.getElementById('barra2').style.backgroundColor = 'red';
+        document.getElementById('barra3').style.backgroundColor = 'red';
+        document.getElementById('barra4').style.backgroundColor = 'red';
+        this.setState({strenght_value:"hard"});
+      }
+    },50);
+      
 
   // para trocar a cor do placeholder pela da senha ao gerar a primeira vez
     document.getElementById('password').style.color = '#dadada';
