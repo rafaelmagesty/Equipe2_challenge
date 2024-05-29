@@ -19,9 +19,13 @@ class App extends React.Component{
 
   // função que lida com o clique no botão "generate" e atualiza a força da senha
   handle_generate_click = () =>{
-    this.setState({
-      password:generate(this.state.len, this.state.uppercase, this.state.lowercase, this.state.numbers, this.state.symbols)
-    });
+    if (this.clique_lowercase == 0 && this.clique_uppercase == 0 && this.clique_numbers == 0 && this.clique_symbols == 0){
+      this.setState ({password:"Error"});
+    } else {
+      this.setState({
+        password:generate(this.state.len, this.state.uppercase, this.state.lowercase, this.state.numbers, this.state.symbols)
+      });
+    }
     this.setState({
       strength:password_strength(this.state.password)
     });
