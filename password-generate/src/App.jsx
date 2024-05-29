@@ -8,6 +8,7 @@ class App extends React.Component{
     super(props);
     //state guarda todas as informações necessárias para gerar a senha
     this.state = {
+      strenght_value:'',
       len:10,
       password:"P4$5W0rD!", 
       strength:0,
@@ -29,6 +30,32 @@ class App extends React.Component{
     this.setState({
       strength:password_strength(this.state.password)
     });
+
+    if (this.state.strength == 1) {
+      document.getElementById('barra1').style.backgroundColor = 'green';
+      document.getElementById('barra2').style.background = 'none';
+      document.getElementById('barra3').style.background = 'none';
+      document.getElementById('barra4').style.background = 'none';
+      this.setState({strenght_value:"very easy"});
+    } else if (this.state.strength == 2) {
+      document.getElementById('barra1').style.backgroundColor = 'green';
+      document.getElementById('barra2').style.backgroundColor = 'green';
+      document.getElementById('barra3').style.background = 'none';
+      document.getElementById('barra4').style.background = 'none';
+      this.setState({strenght_value:"easy"});
+    } else if (this.state.strength == 3) {
+      document.getElementById('barra1').style.backgroundColor = 'yellow';
+      document.getElementById('barra2').style.backgroundColor = 'yellow';
+      document.getElementById('barra3').style.backgroundColor = 'yellow';
+      document.getElementById('barra4').style.background = 'none';
+      this.setState({strenght_value:"medium"});
+    } else if (this.state.strength == 4) {
+      document.getElementById('barra1').style.backgroundColor = 'red';
+      document.getElementById('barra2').style.backgroundColor = 'red';
+      document.getElementById('barra3').style.backgroundColor = 'red';
+      document.getElementById('barra4').style.backgroundColor = 'red';
+      this.setState({strenght_value:"hard"});
+    }
 
   // para trocar a cor do placeholder pela da senha ao gerar a primeira vez
     document.getElementById('password').style.color = '#dadada';
@@ -122,7 +149,13 @@ class App extends React.Component{
           </div>
           <div className='strenght'>
             <h4>Strenght</h4>
-            <div className='strenght-right'>{this.state.strength}</div>
+            <div className='strenght-right'>
+              <h5 id='strenght-value'>{this.state.strenght_value}</h5>
+              <div className='barra' id='barra1'></div>
+              <div className='barra' id='barra2'></div>
+              <div className='barra' id='barra3'></div>
+              <div className='barra' id='barra4'></div>
+            </div>
           </div>
           <button className='generate-btn' onClick={this.handle_generate_click}>Generate</button>
         </div>

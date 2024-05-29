@@ -115,6 +115,19 @@ body {
     justify-content: end;
     color: white;
 }
+.barra {
+    width: 5px;
+    height: 15px;
+    margin-left: 4px;
+    border: 1px solid #dadada;
+}
+#strenght-value {
+    text-transform: uppercase;
+    color: #dadada;
+    font-size: 1.2rem;
+    margin-right: 6px;
+    margin-top: 2px;
+}
 .generate-btn {
     height: 40px;
     cursor: pointer;
