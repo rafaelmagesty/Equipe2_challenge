@@ -62,6 +62,13 @@ class App extends React.Component{
         document.getElementById('barra4').style.backgroundColor = 'red';
         this.setState({strenght_value:"hard"});
       }
+      if (this.state.password == 'Error') {
+        document.getElementById('barra1').style.background = 'none';
+        document.getElementById('barra2').style.background = 'none';
+        document.getElementById('barra3').style.background = 'none';
+        document.getElementById('barra4').style.background = 'none';
+        this.setState({strenght_value:""});
+      }
     },50);
       
 
@@ -114,6 +121,12 @@ class App extends React.Component{
     }
   }
 
+  clipboardCopy = () => {
+  let psswrd = document.querySelector("#password").innerHTML;
+  setTimeout(() => {
+    navigator.clipboard.writeText(psswrd);
+  },100);
+}
 
   render(){
     return (
@@ -125,7 +138,7 @@ class App extends React.Component{
         <div className='screen-middle'>
           {/* tipo aqui embaixo é uma referencia ao state agora */}
           <h2 id='password'>{this.state.password}</h2>
-          <button className='img-btn'><img src="\img-copiar.png" alt="img" className='img' /></button>
+          <button className='img-btn' onClick={this.clipboardCopy}><img src="\img-copiar.png" alt="img" className='img' /></button>
         </div>
   
         {/* todas as classes de caracter eu coloquei em português, porque acho difícil escrever em inglês */}
