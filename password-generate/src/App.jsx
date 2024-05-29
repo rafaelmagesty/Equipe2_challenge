@@ -87,7 +87,7 @@ class App extends React.Component{
       this.clique_uppercase = 0
     }
   }
-
+//teste commit
   clique_lowercase = 0;       //lowercase
   chk_Lowercase = () => {
     if (this.clique_lowercase == 0){
